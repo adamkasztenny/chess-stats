@@ -17,17 +17,16 @@ pgn_games = pgn.PGNGame()
 games = pgn.loads(pgn_text)
 number_of_games = len(games)
 
-print(str(number_of_games) + " number of games loaded.\n")
+print(str(number_of_games) + " games loaded.\n")
 
 results = map(lambda x: x.result, games)
-print(results)
 
-def win_rate(result): return len(filter(lambda x: x == result, results)) / number_of_games
+def win_rate(result): return (float(len(filter(lambda x: x == result, results))) / number_of_games) * 100
 
 white_wins = win_rate('1-0')
 black_wins = win_rate('0-1')
 draws = win_rate('1/2-1/2')
 
-print("White wins " + str(white_wins) + "%")
-print("Black wins " + str(black_wins) + "%")
-print("Draws " + str(draws) + "%")
+print("White wins %.2f" % (white_wins) + "%")
+print("Black wins %.2f" % (black_wins) + "%")
+print("Draws %.2f" % (draws) + "%")
